@@ -1,9 +1,6 @@
-
 import 'dart:async';
-
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:food_recipe/service/get_recipe.dart';
-import 'package:food_recipe/views/home/homescreen.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -12,9 +9,8 @@ import '../../../controller/recipe_provider.dart';
 
 class RecipeView extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final  directionsUrl;
-   const RecipeView({super.key,this.directionsUrl});
-
+  final String  directionsUrl;
+const RecipeView({Key? key, required this.directionsUrl}) : super(key: key);
   @override
   State<RecipeView> createState() => _RecipeViewState();
 }
@@ -29,15 +25,14 @@ class _RecipeViewState extends State<RecipeView> {
   }
   @override
   Widget build(BuildContext context) {
-    print("122sfg");
+    log("smssss");
+   
     final Completer<WebViewController>_completer =Completer<WebViewController>();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pop(MaterialPageRoute(
-                builder: (context) =>  const HomeScreen(),
-              ));
+            Navigator.of(context).pop();
             },
             icon: const Icon(
               Icons.arrow_back,
@@ -72,6 +67,7 @@ class _RecipeViewState extends State<RecipeView> {
       ),
       
       body: SafeArea(
+        
         child:
         
       WebView(
