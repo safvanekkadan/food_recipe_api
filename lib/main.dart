@@ -4,7 +4,7 @@ import 'package:food_recipe/views/home/homescreen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-      WidgetsFlutterBinding.ensureInitialized();
+WidgetsFlutterBinding.ensureInitialized();
 
   runApp(const MyApp());
 }

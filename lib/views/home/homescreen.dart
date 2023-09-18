@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:food_recipe/controller/recipe_provider.dart';
-import 'package:food_recipe/models/recipe.dart';
-import 'package:food_recipe/service/recipe_api.dart';
+
 import 'package:food_recipe/widgets/recipe_card.dart';
 import 'package:provider/provider.dart';
 
@@ -39,30 +40,44 @@ class _HomeScrrenState extends State<HomeScreen> {
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+          
             Icon(Icons.restaurant_menu),
             SizedBox(width: 10),
             Text("Food Recipe",
             style: TextStyle(
               color: Colors.orange,
               fontWeight: FontWeight.w900
-            ),)
+
+            ),),
+            
+        
           ],
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: IconButton(onPressed: (){
+              exit(0);
+            }, icon: Icon(Icons.exit_to_app_rounded)),
+          )
+        ],
       ),
        body: 
       
        Consumer<RecipeProvider>(
            builder: (context, value, child) {
                  if(value.isLoading){
-                return const Center(child: CircularProgressIndicator(),);
+                return const Center(child: CircularProgressIndicator());
               }
              return   ListView.builder(
           itemCount:value.recipes.length,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return RecipeCard(title:value.recipes[index].name,
              cookTime: value.recipes[index].totalTime, 
              rating:value.recipes[index].rating.toString(), 
              thumbnailUrl:value.recipes[index].images,
+             directionsUrl: value.recipes[index].directionsUrl,
             
              );
           },

@@ -3,6 +3,7 @@ class Recipe{
   final String images;
   final double rating;
   final String totalTime;
+  final String directionsUrl;
   
 
   Recipe({
@@ -10,6 +11,7 @@ class Recipe{
     required this.images,
     required this.rating,
     required this.totalTime,
+    required this.directionsUrl
     
   });
 
@@ -19,6 +21,7 @@ class Recipe{
       images: json['images'][0]['hostedLargeUrl']  as String,
       rating:  json['rating'] as double,
       totalTime: json['totalTime'] as String,
+      directionsUrl: json['directionsUrl'] as String
       
 
     );
